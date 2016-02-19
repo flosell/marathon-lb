@@ -1194,10 +1194,8 @@ class MarathonEventProcessor(object):
                 except requests.exceptions.ConnectionError as e:
                     logger.error("Connection error({0}): {1}".format(
                         e.errno, e.strerror))
-                except:
-                    print(event.data)
-                    print("Unexpected error:", sys.exc_info()[0])
-                    raise
+                except Exception:
+                    logger.exception("Unknown exception!")
 
     def reset_from_tasks(self):
         self.__condition.acquire()
